@@ -238,7 +238,7 @@ break
 
             if (isMedia) {
                 if (type === 'image') return client.reply(from, `Media sent must be video/gif, for images use !sticker.`, id)
-                if (mimetype === 'video/mp4' && message.duration <= 10 || quotedMsg.mimetype === 'video/mp4' && quotedMsg.duration <= 10) {
+                if (mimetype === 'video/mp4' && message.duration <= 10 || isQuotedVideo && isQuotedVideo.duration <= 10|| quotedMsg.mimetype === 'video/mp4' && quotedMsg.duration <= 10) {
                     var encryptedMedia = isQuotedVideo ? quotedMsg : message
                     var mediaData = await decryptMedia(encryptedMedia)
                     client.reply(from, '[WAIT] Sticker in progress⏳ please wait ± 1 min!', id)
@@ -364,11 +364,7 @@ break
                 client.reply(from, 'Usage :\n!brainly [question] [.number]\n\nEx : \n!brainly NKRI .2', id)
             }
             break
-            case '!animememe':
-                const response13 = await axios.get('https://meme-api.herokuapp.com/gimme/animemes');
-                const { postlink13, title13, subreddit13, url13, nsfw13, spoiler13 } = response13.data
-                await client.sendFileFromUrl(from, `${url13}`, 'meme.jpg', `${title13}`)
-                break
+
         case '!wait':
             if (isMedia && type === 'image' || quotedMsg && quotedMsg.type === 'image') {
                 if (isMedia) {
@@ -936,12 +932,7 @@ break
          break
          
             
-        case '!dankmemes':
-            const response10 = await axios.get('https://meme-api.herokuapp.com/gimme/dankmemes/');
-            const { postlink10, title10, subreddit10, url10, nsfw10, spoiler10 } = response10.data
-            await client.sendFileFromUrl(from, url10, 'dankmemes.jpg', title10)
-            await client.sendFileFromUrl(from, url10, 'dankmemes.gif', title10)
-            break
+
 
       case '!lebanon':            
      
@@ -978,7 +969,7 @@ break
                     break
         case '!donate' :
          case '!donation' :
-        client.reply(from,'https://helplebanon.carrd.co','https://supportlrc.app/donate',id) 
+        client.reply(from,'*https://helplebanon.carrd.co* \n*https://supportlrc.app/donate*',id) 
        break
        case '!kessemmak' :
         client.reply(from,'kess emme',id)
@@ -1031,10 +1022,10 @@ break
 
         case '!skye':
             case '!skye':
-                client.sendFile(from, './media/skye/skye.mp3', 'skye.mp3')
-                client.sendFile(from, './media/skye/skye.png', 'skye.png')
-                client.sendFile(from, './media/skye/skye1.png', 'skye1.png') 
-                client.sendFile(from, './media/skye/skye2.png', 'skye2.png')  
+                client.sendImageAsSticker(from, './media/skye/skye.mp3',stickerMetadata)
+                client.sendImageAsSticker(from, './media/skye/skye.png', stickerMetadata)
+                client.sendImageAsSticker(from, './media/skye/skye1.png', stickerMetadata) 
+                client.sendImageAsSticker(from, './media/skye/skye2.png', stickerMetadata)  
                 client.reply(from,'*ANH*',id)                                   
               break
               case '!groupinfo' :
@@ -1114,10 +1105,10 @@ break
                         client.sendFile(from, './media/berger/berger.mp4', 'berger.mp4')
                         break
                     case '!chapo':
-                            client.sendFile(from, './media/chapo/chapo.png', 'chapo.png')
-                            client.sendFile(from, './media/chapo/chapo2.png', 'chapo2.png')
-                            client.sendFile(from, './media/chapo/chapo3.png', 'chapo3.png')
-                            client.sendFile(from, './media/chapo/chapo4.png', 'chapo4.png')
+                            client.sendImageAsSticker(from, './media/chapo/chapo.png',stickerMetadata)
+                            client.sendImageAsSticker(from, './media/chapo/chapo2.png', stickerMetadata)
+                            client.sendImageAsSticker(from, './media/chapo/chapo3.png', stickerMetadata)
+                            client.sendImageAsSticker(from, './media/chapo/chapo4.png', stickerMetadata)
                             client.reply(from,'*ANH*',id)   
                             break                    
 
