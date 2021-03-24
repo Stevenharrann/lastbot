@@ -22,44 +22,40 @@
                         msgHandler(client, message)
                     }))
             
-                    client.onGlobalParicipantsChanged((async (heuh) => {
-                        await welcome(client, heuh)
-                        //left(client, heuh)
-                        }))
-                    
-                        client.onAddedToGroup(((chat) => {
-                            let totalMem = chat.groupMetadata.participants.length
-                            if (!totalMem === 30) {
-                        } else {
-                            client.sendText(chat.groupMetadata.id, `Hello *${chat.contact.name}*, Thanks for adding me. Use *!help* to see the menu. Enjoy the bot!`)
-                        }
-                    }))
-                   
-                    /*client.onAck((x => {
-                        const { from, to, ack } = x
-                        if (x !== 3) client.sendSeen(to)
-                    }))*/
-            
-                    // listening on Incoming Call
-                    client.onIncomingCall(( async (call) => {
-                        await client.sendText(call.peerJid, '*Please stop calling! Call = Block*')
-                        .then(() => client.contactBlock(call.peerJid))
-                    }))
-                }
-                create({"headless": true,
-                "cacheEnabled": false,
-                "useChrome": true,
-                "chromiumArgs": [
-                    "--no-sandbox",
-                    "--disable-setuid-sandbox",
-                    "--aggressive-cache-discard",
-                    "--disable-cache",
-                    "--disable-application-cache",
-                    "--disable-offline-load-stale-cache",
-                    "--disk-cache-size=0"
-                ]
-            })
-            create(options(true, start))
-                .then(client => start(client))
-                .catch((error) => console.log(error))
-            
+                    client.onAddedToGroup(((chat) => {
+                        let totalMem = chat.groupMetadata.participants.length
+                        if (!totalMem === 30) {
+                    } else {
+                        client.sendText(chat.groupMetadata.id, `Hello *${chat.contact.name}*, Thanks for adding me. Use *!help* to see the menu. Enjoy the bot!`)
+                    }
+                }))
+               
+                /*client.onAck((x => {
+                    const { from, to, ack } = x
+                    if (x !== 3) client.sendSeen(to)
+                }))*/
+        
+                // listening on Incoming Call
+                client.onIncomingCall(async call => {
+                    console.log(color('[~>>]', 'red'), `Someone is calling bot, lol`)
+                    await client.sendText(call.peerJid._serialized, "Please Stop Calling! *Call=Block*")
+                    .then(() => client.contactBlock(call.peerJid))
+                })
+            }
+            create({"headless": true,
+            "cacheEnabled": false,
+            "useChrome": true,
+            "chromiumArgs": [
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--aggressive-cache-discard",
+                "--disable-cache",
+                "--disable-application-cache",
+                "--disable-offline-load-stale-cache",
+                "--disk-cache-size=0"
+            ]
+        })
+        create(options(true, start))
+            .then(client => start(client))
+            .catch((error) => console.log(error))
+
