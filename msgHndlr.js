@@ -33,7 +33,6 @@ const ruleArr = JSON.parse(fs.readFileSync('./lib/rule.json'))
 const pokefunc = require('./lib/poke.js')
 const pkarrs = JSON.parse(fs.readFileSync('./lib/pokedata/pkmnz.json'))
 const nsfw_ = JSON.parse(fs.readFileSync('./lib/NSFW.json'))
-const nsfwgrp = JSON.parse(fs.readFileSync('./lib/nsfw.json')) 
 const welkom = JSON.parse(fs.readFileSync('./lib/welcome.json') )
 const errorurl = 'https://steamuserimages-a.akamaihd.net/ugc/954087817129084207/5B7E46EE484181A676C02DFCAD48ECB1C74BC423/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false'
 const errorurl2 = 'https://steamuserimages-a.akamaihd.net/ugc/954087817129084207/5B7E46EE484181A676C02DFCAD48ECB1C74BC423/?imw=512&&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false'
